@@ -37,7 +37,7 @@ app.engine('html', require('ejs').renderFile);
 // Static Resources
 // Angular App
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public/mean-pmanager/dist')));
+//app.use(express.static(path.join(__dirname, 'public/mean-pmanager/dist')));
 
 // Body Parser Middleware
 app.use(bodyParser.json());

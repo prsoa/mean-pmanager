@@ -17,6 +17,7 @@ export class Task{
 export class TasksComponent {
   tasks: Task[];
   title: string;
+  newTitle: string;
 
   @Input() project_id: string;
 
@@ -32,17 +33,19 @@ export class TasksComponent {
 
   addTask(event){
     event.preventDefault();
-    var newTask = {
-      title: this.title,
-      isDone: false,
-      project_id: this.project_id
-    }
+    if(this.newTitle) {
+      var newTask = {
+        title: this.newTitle,
+        isDone: false,
+        project_id: this.project_id
+      }
 
-    this.taskService.addTask(newTask)
-      .subscribe(task => {
-        this.tasks.push(task);
-        this.title = '';
-      });
+      this.taskService.addTask(newTask)
+        .subscribe(task => {
+          this.tasks.push(task);
+          this.newTitle = '';
+        });
+      }
   }
 
   deleteTask(event, id){
@@ -84,18 +87,20 @@ export class TasksComponent {
   editTask(task){
     var tasks = this.tasks;
 
-    var _task = {
-      _id: task._id,
-      title: this.title,
-    }
-
-    this.taskService.updateStatus(_task).subscribe(task => {
-      for(var i = 0; i < tasks.length; i++){
-        if(tasks[i]._id == _task._id){
-          tasks[i].title = _task.title;
-
-        }
+    if(this.title){
+      var _task = {
+        _id: task._id,
+        title: this.title,
       }
-    });
+
+      this.taskService.updateStatus(_task).subscribe(task => {
+        for(var i = 0; i < tasks.length; i++){
+          if(tasks[i]._id == _task._id){
+            tasks[i].title = _task.title;
+
+          }
+        }
+      });
+    }
   }
 }

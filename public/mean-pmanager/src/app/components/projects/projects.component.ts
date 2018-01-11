@@ -15,6 +15,7 @@ export class ProjectsComponent {
   projects: Project[];
   _id: string;
   title: string;
+  newTitle: string;
 
   constructor(private projectService:ProjectService) {
     this.projectService.getProjects().subscribe(projects => {
@@ -24,15 +25,18 @@ export class ProjectsComponent {
 
   addProject(event){
     event.preventDefault();
-    var newProject = {
-      title: this.title
-    }
 
-    this.projectService.addProject(newProject)
-      .subscribe(project => {
-        this.projects.push(project);
-        this.title = '';
-      });
+    if(this.newTitle){
+      var newProject = {
+        title: this.newTitle
+      }
+
+      this.projectService.addProject(newProject)
+        .subscribe(project => {
+          this.projects.push(project);
+          this.newTitle = '';
+        });
+      }
   }
 
   deleteProject(event, id){
@@ -52,17 +56,19 @@ export class ProjectsComponent {
   editProject(project){
     var projects = this.projects;
 
-    var _project = {
-      _id: project._id,
-      title: this.title,
-    }
-
-    this.projectService.editProject(_project).subscribe(project => {
-      for(var i = 0; i < projects.length; i++){
-        if(projects[i]._id == project._id){
-          projects[i].title = _project.title;
-        }
+    if(this.title) {
+      var _project = {
+        _id: project._id,
+        title: this.title,
       }
-    });
+
+      this.projectService.editProject(_project).subscribe(project => {
+        for(var i = 0; i < projects.length; i++){
+          if(projects[i]._id == project._id){
+            projects[i].title = _project.title;
+          }
+        }
+      });
+    }
   }
 }
