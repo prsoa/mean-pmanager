@@ -1,0 +1,22 @@
+<% if(session.userId) { %>
+  <div class="btn-group">
+    <button class="btn btn-default toggle-dropdown" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+       <%= session.userName %> <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-right">
+      <li><a href="/users/profile">Profile</a></li>
+      <li><a href="/users/logout">Logout</a></li>
+    </ul>
+  </div>
+<% } else { %>
+  <div class="btn-group">
+    <button class="btn btn-default toggle-dropdown" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+       Menu <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-right">
+      <li><a href="/">Home</a></li>
+      <li><a href="/users/login">Login</a></li>
+      <li><a href="/users/register">Register</a></li>
+    </ul>
+  </div>
+<% } %>

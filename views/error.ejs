@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MEAN Project Manager</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="custom/styles.css" type="text/css" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <section>
+          <h1>MEAN Project Manager</h1>
+          <hr />
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <% include partials/right-menu %>
+              <h4>Projects</h4>
+              <div class="clearfix"></div>
+            </div>
+            <div class="panel-body">
+              <div class="alert alert-danger" role="alert">
+                <p>
+                  <strong>Oops, Internal Server Error!</strong>
+                </p>
+                <br/>
+                <p>
+                    <%= message %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

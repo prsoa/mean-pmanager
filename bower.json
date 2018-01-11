@@ -1,0 +1,21 @@
+{
+  "name": "mean-pmanager",
+  "description": "A small Project Manager using MoongoDB, Express, Angular and Nodejs - MEAN",
+  "main": "app.js",
+  "authors": [
+    "Paulo Azevedo"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/prsoa/mean-pmanager",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "/public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
