@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 
 mongoose.connect('mongodb://admin:mean-pmanager@ds247027.mlab.com:47027/mean-pmanager', { useMongoClient: true });
 
