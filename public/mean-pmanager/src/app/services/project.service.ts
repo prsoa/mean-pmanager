@@ -26,7 +26,7 @@ export class ProjectService {
       .map(res => res.json());
   }
 
-  updateStatus(project) {
+  editProject(project) {
     var headers = new Headers();
 
     headers.append('Content-Type', 'application/json');

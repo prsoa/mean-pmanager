@@ -85,23 +85,17 @@ module.exports = function(app){
 
   });
 
-  // Update taks
+  // Update Project
   app.put('/api/projects/:id', function(req, res, next){
     var newProject = req.body;
 
     var updProject = {};
 
-    if(newProject.isDone){
-      updProject.isDone = newProject.isDone;
-      updProject.finish_date = new Date();
-    } else {
-      updProject.isDone = false;
-      updProject.finish_date = null;
-    }
-
     if(newProject.title){
       updProject.title = newProject.title;
     }
+
+    console.log(req.params.id);
 
     if(!updProject){
       res.status(400);
@@ -109,10 +103,12 @@ module.exports = function(app){
         "error":"Bad Data"
       });
     } else {
-      Project.findOneAndUpdate({_id: req.params.id}, { $set: updProject}, {upsert:true}, function(err, project){
+      Project.findOneAndUpdate({_id: req.params.id}, { $set: updProject}, {new:true}, function(err, project){
           if(err){
             res.send(err);
           }
+
+          console.log(project);
 
           res.json(project);
       });

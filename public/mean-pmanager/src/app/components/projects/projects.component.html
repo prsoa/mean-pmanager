@@ -3,15 +3,7 @@
     <div class="col-sm-6" *ngFor="let project of projects">
       <div class="panel panel-default project">
         <div class="panel-heading">
-          {{project.title}}
-          <div class="pull-right">
-            <button type="button" class="btn btn-default edit" aria-label="Left Align" >
-              <span class="glyphicon glyphicon-pencil" aria-hidden="true" (click)="editProject(project._id)"></span>
-            </button>
-            <button type="button" class="btn btn-default remove" aria-label="Left Align" >
-              <span class="glyphicon glyphicon-trash" aria-hidden="true" (click)="deleteProject(project._id)"></span>
-            </button>
-          </div>
+          <app-inline-edit [(ngModel)]="title" label="{{project.title}}" [required]="true" type="text" (deleteEvent)="deleteProject($event, project._id)" (editEvent)="editProject(project)"></app-inline-edit>
         </div>
         <div class="panel-body">
           <tasks project_id="{{project._id}}"></tasks>

@@ -157,7 +157,8 @@ module.exports = function(app){
       });
 
     } else {
-      return res.redirect('/');
+      res.status = 500;
+      return res.send('Unable to make changes. Please confirm that the current password was provided.');
     }
 
   });

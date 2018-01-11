@@ -8,12 +8,14 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { TasksComponent } from './components/tasks/tasks.component';
+import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectsComponent,
-    TasksComponent
+    TasksComponent,
+    InlineEditComponent
   ],
   imports: [
     BrowserModule,

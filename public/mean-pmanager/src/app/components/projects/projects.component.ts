@@ -4,7 +4,6 @@ import { ProjectService } from '../../services/project.service';
 export class Project{
   _id: string;
   title: string;
-  isDone: boolean;
 }
 
 @Component({
@@ -14,6 +13,7 @@ export class Project{
 })
 export class ProjectsComponent {
   projects: Project[];
+  _id: string;
   title: string;
 
   constructor(private projectService:ProjectService) {
@@ -35,7 +35,7 @@ export class ProjectsComponent {
       });
   }
 
-  deleteProject(id){
+  deleteProject(event, id){
     var projects = this.projects;
 
     this.projectService.deleteProject(id).subscribe(data => {
@@ -49,15 +49,20 @@ export class ProjectsComponent {
     })
   }
 
-  updateStatus(project){
+  editProject(project){
+    var projects = this.projects;
+
     var _project = {
       _id: project._id,
-      title: project.title,
-      isDone: !project.isDone
+      title: this.title,
     }
 
-    this.projectService.updateStatus(_project).subscribe(data => {
-      project.isDone = !project.isDone;
+    this.projectService.editProject(_project).subscribe(project => {
+      for(var i = 0; i < projects.length; i++){
+        if(projects[i]._id == project._id){
+          projects[i].title = _project.title;
+        }
+      }
     });
   }
 }

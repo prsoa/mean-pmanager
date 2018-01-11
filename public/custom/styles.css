@@ -7,7 +7,6 @@
 }
 
 .tasks-todo .task:hover {
-  cursor: pointer;
   color: #005aff;
 }
 
@@ -18,6 +17,7 @@
 {
   opacity: 1;
   color: #005aff;
+  background: transparent;
 }
 
 .tasks-todo .task {

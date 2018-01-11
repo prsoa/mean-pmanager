@@ -5,6 +5,8 @@ export class Task{
   _id: string;
   title: string;
   isDone: boolean;
+  created_date: string;
+  finish_date: string;
 }
 
 @Component({
@@ -26,7 +28,6 @@ export class TasksComponent {
     this.taskService.getTasks(this.project_id).subscribe(tasks => {
       this.tasks = tasks;
     });
-    console.log(this.project_id);
   }
 
   addTask(event){
@@ -44,7 +45,7 @@ export class TasksComponent {
       });
   }
 
-  deleteTask(id){
+  deleteTask(event, id){
     var tasks = this.tasks;
 
     this.taskService.deleteTask(id).subscribe(data => {
@@ -59,15 +60,42 @@ export class TasksComponent {
   }
 
   updateStatus(task){
+    var tasks = this.tasks;
+
     var _task = {
       _id: task._id,
       title: task.title,
       isDone: !task.isDone,
+      finish_date: Date(),
       project_id: task.project_id
     }
 
     this.taskService.updateStatus(_task).subscribe(data => {
       task.isDone = !task.isDone;
+      for(var i = 0; i < tasks.length; i++){
+        if(tasks[i]._id == _task._id){
+          tasks[i].isDone = _task.isDone;
+          tasks[i].finish_date = _task.finish_date;
+        }
+      }
+    });
+  }
+
+  editTask(task){
+    var tasks = this.tasks;
+
+    var _task = {
+      _id: task._id,
+      title: this.title,
+    }
+
+    this.taskService.updateStatus(_task).subscribe(task => {
+      for(var i = 0; i < tasks.length; i++){
+        if(tasks[i]._id == _task._id){
+          tasks[i].title = _task.title;
+
+        }
+      }
     });
   }
 }

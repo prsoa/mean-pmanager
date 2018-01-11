@@ -1,0 +1,14 @@
+<span *ngIf="editing">
+  <input #inlineEditControl [required]="required" (blur)="onBlur($event)" [name]="value" [(ngModel)]="value" [type]="type" [placeholder]="label" class="edit-input" />
+</span>
+<span *ngIf="!editing">
+  <label class="block bold">{{label}}</label>
+</span>
+<div class="pull-right">
+  <button type="button" class="btn btn-default edit" aria-label="Left Align" >
+    <span class="glyphicon glyphicon-pencil" aria-hidden="true" (click)="edit(value)" (focus)="edit(value);"></span>
+  </button>
+  <button type="button" class="btn btn-default remove" aria-label="Left Align" >
+    <span class="glyphicon glyphicon-trash" aria-hidden="true" (click)="delete()"></span>
+  </button>
+</div>
